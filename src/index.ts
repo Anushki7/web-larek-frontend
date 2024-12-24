@@ -66,7 +66,7 @@ events.on('card:select', (item: IProduct) => { // клик пользовате�
 
 events.on('preview:change', (item: IProduct) => { // отображение предпросмотра карточки
 	const productInBasket = model.isProductsInBasket(item.id);
-	const cardprePreview = new CardPreview(cloneTemplate(cardPreviewTemplate), {
+	const cardPreview = new CardPreview(cloneTemplate(cardPreviewTemplate), {
 		onClick: () => {
 			if (productInBasket) {
 				events.emit('basket:delete', item);
@@ -78,7 +78,7 @@ events.on('preview:change', (item: IProduct) => { // отображение пр
 	});
 
 	modal.render({
-		content: cardprePreview.render({
+		content: cardPreview.render({
 			id: item.id,
 			title: item.title,
 			price: item.price,

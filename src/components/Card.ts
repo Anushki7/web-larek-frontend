@@ -37,13 +37,12 @@ export class Card extends Component<IProduct> {
 		this.container.dataset.id = value;
 	}
 
-	set price(value: string) {
-        if(value === null) {
-            this.setText(this._price, `Бесценно`);
-          } else {
-            this.setText(this._price, `${value} синапсов`);
-          }
-    }
+	set price(value: number) {
+		this.setText(this._price, value ? `${value} синапсов` : 'Бесценно');
+		if (this._button) {
+			this._button.disabled = !value;
+		}
+	}
 
 	set title(value: string) {
 		this.setText(this._title, value);
@@ -72,7 +71,7 @@ export class OnlyCardOnPage extends Card { //данный класс отвеч�
     }
 }
 
-export class CardPreview extends OnlyCardOnPage { //класс который отвечает за предпросмтр карточки с детальным ее описанием
+export class CardPreview extends Card { //класс который отвечает за предпросмтр карточки с детальным ее описанием
     _description: HTMLElement;
    
 
